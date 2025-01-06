@@ -16,6 +16,7 @@ class QemuVirgl < Formula
   depends_on "vale21/qemu-virgl/libangle"
   depends_on "vale21/qemu-virgl/libepoxy-angle"
   depends_on "vale21/qemu-virgl/virglrenderer"
+  depends_on "vale21/qemu-virgl/spice-server"
   depends_on "libpng"
   depends_on "libssh"
   depends_on "libusb"
@@ -51,6 +52,7 @@ class QemuVirgl < Formula
       --enable-curses
       --enable-libssh
       --enable-vde
+      --enable-spice
       --enable-virglrenderer
       --extra-cflags=-DNCURSES_WIDECHAR=1
       --extra-cflags=-I#{Formula["libangle"].opt_prefix}/include
