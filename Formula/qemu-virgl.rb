@@ -1,7 +1,7 @@
 class QemuVirgl < Formula
   desc "Emulator for x86 and PowerPC"
   homepage "https://www.qemu.org/"
-  url "https://github.com/qemu/qemu.git", using: :git, revision: "stable-6.2"
+  url "https://github.com/qemu/qemu.git", using: :git, revision: "stable-9.2"
   version "20211212.1"
   license "GPL-2.0-only"
 
@@ -51,6 +51,7 @@ class QemuVirgl < Formula
       --enable-curses
       --enable-libssh
       --enable-vde
+      --enable-virglrenderer
       --extra-cflags=-DNCURSES_WIDECHAR=1
       --extra-cflags=-I#{Formula["libangle"].opt_prefix}/include
       --extra-cflags=-I#{Formula["libepoxy-angle"].opt_prefix}/include
