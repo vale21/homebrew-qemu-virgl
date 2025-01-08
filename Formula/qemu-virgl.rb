@@ -1,7 +1,7 @@
 class QemuVirgl < Formula
   desc "Emulator for x86 and PowerPC"
   homepage "https://www.qemu.org/"
-  url "https://github.com/qemu/qemu.git", using: :git, revision: "99fc08366b06282614daeda989d2fde6ab8a707f"
+  url "https://github.com/qemu/qemu.git", using: :git, revision: "stable-9.2"
   version "20211212.1"
   license "GPL-2.0-only"
 
@@ -16,6 +16,7 @@ class QemuVirgl < Formula
   depends_on "vale21/qemu-virgl/libangle"
   depends_on "vale21/qemu-virgl/libepoxy-angle"
   depends_on "vale21/qemu-virgl/virglrenderer"
+  depends_on "vale21/qemu-virgl/spice-server"
   depends_on "libpng"
   depends_on "libssh"
   depends_on "libusb"
@@ -34,10 +35,10 @@ class QemuVirgl < Formula
   end
 
   # waiting for upstreaming of https://github.com/akihikodaki/qemu/tree/macos
-  patch :p1 do
-    url "https://raw.githubusercontent.com/vale21/homebrew-qemu-virgl/87072b7ccc07f5087bf0848fa8920f8b3f8d5a47/Patches/qemu-v05.diff"
-    sha256 "6d27699ba454b5ecb7411822a745b89dce3dea5fccabfb56c84ad698f3222dd4"
-  end
+  # patch :p1 do
+  #   url "https://raw.githubusercontent.com/vale21/homebrew-qemu-virgl/87072b7ccc07f5087bf0848fa8920f8b3f8d5a47/Patches/qemu-v05.diff"
+  #   sha256 "6d27699ba454b5ecb7411822a745b89dce3dea5fccabfb56c84ad698f3222dd4"
+  # end
 
   def install
     ENV["LIBTOOL"] = "glibtool"
@@ -51,6 +52,8 @@ class QemuVirgl < Formula
       --enable-curses
       --enable-libssh
       --enable-vde
+      --enable-spice
+      --enable-virglrenderer
       --extra-cflags=-DNCURSES_WIDECHAR=1
       --extra-cflags=-I#{Formula["libangle"].opt_prefix}/include
       --extra-cflags=-I#{Formula["libepoxy-angle"].opt_prefix}/include
